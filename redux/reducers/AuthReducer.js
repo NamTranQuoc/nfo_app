@@ -9,7 +9,7 @@ const AuthReducer = (state = INIT_STATE, action) => {
     case SIGNIN_USER_SUCCESS: {
       return {
         ...state,
-        token: action.payload
+        token: action.data
       }
     }
     default:
