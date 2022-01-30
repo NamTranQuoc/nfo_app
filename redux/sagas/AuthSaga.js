@@ -2,6 +2,7 @@ import {SIGNIN_USER} from "../../constants/ActionTypes";
 import {all, call, fork, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
+import {Alert} from "react-native";
 
 const INSTRUCTOR_API_URL = `${HOST}/auth`
 
@@ -13,21 +14,21 @@ function* SignInGenerate({data}) {
   try {
     const response = yield call(SignInRequest, data);
     if (response.status !== 200) {
-      console.log(response.status);
+      Alert.alert(response.status);
     } else if (response.data.code !== 9999) {
-      console.log(response.data.message);
+      Alert.alert(response.data.message);
     } else {
-      console.log(response.data.payload);
+      data.navigation.navigate("Root");
     }
   } catch (error) {
-    console.log(error);
+    Alert.alert(error);
   }
 }
 
 const SignInRequest = async (data) => {
   return await axios({
     method: "POST",
-    url: `http://172.17.192.1:8080/auth/login`,
+    url: `${INSTRUCTOR_API_URL}/login`,
     data: {
       username: data.username,
       password: data.password

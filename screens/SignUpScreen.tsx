@@ -6,7 +6,7 @@ import {useDispatch} from 'react-redux';
 import {signInAction} from "../redux/actions/AuthAction";
 import {RootStackScreenProps} from "../types";
 
-export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
+export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignUp'>) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);

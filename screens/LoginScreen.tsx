@@ -4,15 +4,16 @@ import {Button, TextInput} from "react-native-paper";
 import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import {signInAction} from "../redux/actions/AuthAction";
+import {RootStackScreenProps} from "../types";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const dispatch = useDispatch();
 
   const onSignIn = () => {
-    dispatch(signInAction(username, password));
+    dispatch(signInAction(username, password, navigation));
   }
 
   return (
@@ -82,7 +83,8 @@ export default function LoginScreen() {
                 theme={{roundness: 27}}
                 labelStyle={{fontSize: 20, color: '#394e5f'}}
                 onPress={() => {
-                  Alert.alert("Chưa có bạn ơi!!")
+                  Alert.alert("Chưa có bạn ơi!!");
+                  // return navigation.navigate("Root");
                 }}
                 icon={'google'}>
           with google
