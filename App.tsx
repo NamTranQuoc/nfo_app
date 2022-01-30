@@ -8,7 +8,7 @@ import rootSaga from "./redux/sagas";
 import createSagaMiddleware from 'redux-saga';
 import {Provider} from 'react-redux';
 import allReducers from "./redux/reducers";
-import { createStore, applyMiddleware } from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 
 const sagaMiddleware = createSagaMiddleware();
 let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
@@ -20,12 +20,12 @@ export default function App() {
     return null;
   } else {
     return (
-        <Provider store={store}>
-          <SafeAreaProvider>
-            <Navigation colorScheme={colorScheme}/>
-            <StatusBar/>
-          </SafeAreaProvider>
-        </Provider>
+      <Provider store={store}>
+        <SafeAreaProvider>
+          <Navigation colorScheme={colorScheme}/>
+          <StatusBar/>
+        </SafeAreaProvider>
+      </Provider>
     );
   }
 }

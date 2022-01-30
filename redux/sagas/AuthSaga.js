@@ -1,10 +1,12 @@
 import {SIGNIN_USER} from "../../constants/ActionTypes";
-import {all, call, fork, put, takeEvery} from "redux-saga/effects";
+import {call, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
 import {Alert} from "react-native";
 
 const INSTRUCTOR_API_URL = `${HOST}/auth`
+
+//start sign in
 
 export function* takeEverySignIn() {
   yield takeEvery(SIGNIN_USER, SignInGenerate);
@@ -37,3 +39,4 @@ const SignInRequest = async (data) => {
       .catch(error => error)
 }
 
+//end sign in

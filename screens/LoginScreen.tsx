@@ -6,7 +6,7 @@ import {useDispatch} from 'react-redux';
 import {signInAction} from "../redux/actions/AuthAction";
 import {RootStackScreenProps} from "../types";
 
-export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
+export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
@@ -24,7 +24,7 @@ export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'
         <Button color={"#ffffff"}
                 style={{marginTop: 30, width: 100, alignSelf: 'flex-end'}}
                 onPress={() => {
-                  Alert.alert("Chưa có bạn ơi!!")
+                  return navigation.navigate("SignUp");
                 }}>
           Sign Up
         </Button>
