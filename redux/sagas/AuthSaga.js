@@ -1,8 +1,9 @@
 import {SIGNIN_USER} from "../../constants/ActionTypes";
-import {call, takeEvery} from "redux-saga/effects";
+import {call, takeEvery, put} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
 import {Alert} from "react-native";
+import {onHideLoader, onShowLoader} from "../actions/CommonAction";
 
 const INSTRUCTOR_API_URL = `${HOST}/auth`
 
@@ -14,6 +15,7 @@ export function* takeEverySignIn() {
 
 function* SignInGenerate({data}) {
   try {
+    yield put(onShowLoader());
     const response = yield call(SignInRequest, data);
     if (response.status !== 200) {
       Alert.alert(response.status);
@@ -24,6 +26,8 @@ function* SignInGenerate({data}) {
     }
   } catch (error) {
     Alert.alert(error);
+  } finally {
+    yield put(onHideLoader());
   }
 }
 

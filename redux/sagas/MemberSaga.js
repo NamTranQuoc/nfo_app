@@ -1,8 +1,9 @@
 import {SIGNUP_USER} from "../../constants/ActionTypes";
-import {call, takeEvery} from "redux-saga/effects";
+import {call, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
 import {Alert} from "react-native";
+import {onHideLoader, onShowLoader} from "../actions/CommonAction";
 
 const INSTRUCTOR_API_URL = `${HOST}/member`
 
@@ -14,6 +15,7 @@ export function* takeEverySignUp() {
 
 function* SignUpGenerate({data}) {
   try {
+    yield put(onShowLoader());
     const response = yield call(SignUpRequest, data);
     console.log(response);
     if (response.status !== 200) {
@@ -26,6 +28,8 @@ function* SignUpGenerate({data}) {
     }
   } catch (error) {
     Alert.alert(error);
+  } finally {
+    yield put(onHideLoader());
   }
 }
 

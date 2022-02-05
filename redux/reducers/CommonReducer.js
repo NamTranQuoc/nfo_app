@@ -1,15 +1,21 @@
-import {SIGNIN_USER_SUCCESS} from "../../constants/ActionTypes";
+import {HIDE_LOADER, SHOW_LOADER} from "../../constants/ActionTypes";
 
 const INIT_STATE = {
-  token: '',
+  showLoader: false,
 };
 
-const AuthReducer = (state = INIT_STATE, action) => {
+const CommonReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case SIGNIN_USER_SUCCESS: {
+    case SHOW_LOADER: {
       return {
         ...state,
-        token: action.data
+        showLoader: true
+      }
+    }
+    case HIDE_LOADER: {
+      return {
+        ...state,
+        showLoader: false
       }
     }
     default:
@@ -17,4 +23,4 @@ const AuthReducer = (state = INIT_STATE, action) => {
   }
 }
 
-export default AuthReducer;
+export default CommonReducer;

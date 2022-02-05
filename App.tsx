@@ -9,6 +9,8 @@ import createSagaMiddleware from 'redux-saga';
 import {Provider} from 'react-redux';
 import allReducers from "./redux/reducers";
 import {applyMiddleware, createStore} from 'redux';
+import Loading from "./components/Loading";
+import * as React from "react";
 
 const sagaMiddleware = createSagaMiddleware();
 let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
@@ -24,6 +26,7 @@ export default function App() {
         <SafeAreaProvider>
           <Navigation colorScheme={colorScheme}/>
           <StatusBar/>
+          <Loading/>
         </SafeAreaProvider>
       </Provider>
     );

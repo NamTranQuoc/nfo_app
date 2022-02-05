@@ -1,12 +1,13 @@
-import {SIGNIN_USER} from "../../constants/ActionTypes";
+import {HIDE_LOADER, SHOW_LOADER} from "../../constants/ActionTypes";
 
-export const signInAction = (username, password, navigation) => {
+export const onShowLoader = () => {
   return {
-    type: SIGNIN_USER,
-    data: {
-      username: username,
-      password: password,
-      navigation: navigation
-    }
+    type: SHOW_LOADER
+  }
+}
+
+export const onHideLoader = () => {
+  return {
+    type: HIDE_LOADER
   }
 }
