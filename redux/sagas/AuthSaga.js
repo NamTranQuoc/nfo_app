@@ -1,5 +1,5 @@
 import {SIGNIN_USER} from "../../constants/ActionTypes";
-import {call, takeEvery, put} from "redux-saga/effects";
+import {call, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
 import {Alert} from "react-native";
