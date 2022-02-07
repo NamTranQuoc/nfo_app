@@ -1,15 +1,15 @@
-import {SIGNIN_USER_SUCCESS} from "../../constants/ActionTypes";
+import {GET_CURRENT_MEMBER_SUCCESS} from "../../constants/ActionTypes";
 
 const INIT_STATE = {
-  token: '',
+  member: null,
 };
 
-const AuthReducer = (state = INIT_STATE, action) => {
+const MemberReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case SIGNIN_USER_SUCCESS: {
+    case GET_CURRENT_MEMBER_SUCCESS: {
       return {
         ...state,
-        token: action.data
+        member: action.data.member
       }
     }
     default:
@@ -17,4 +17,4 @@ const AuthReducer = (state = INIT_STATE, action) => {
   }
 }
 
-export default AuthReducer;
+export default MemberReducer;

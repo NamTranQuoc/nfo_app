@@ -7,6 +7,7 @@ import {onHideLoader, onShowLoader} from "../actions/CommonAction";
 import {setString} from "../../utils/LocalStorage";
 import {getMemberIdCurrent, getRoleCurrent} from "../../utils/ParseUtils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getCurrentMember} from "../actions/MemberAction";
 
 const INSTRUCTOR_API_URL = `${HOST}/auth`
 
@@ -28,6 +29,7 @@ function* SignInGenerate({data}) {
       setString("token", response.data.payload);
       setString("member_id", getMemberIdCurrent(response.data.payload));
       setString("role", getRoleCurrent(response.data.payload));
+      yield put(getCurrentMember());
       data.navigation.navigate("Root");
     }
   } catch (error) {

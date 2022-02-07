@@ -14,7 +14,6 @@ export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>)
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
-  const token = AsyncStorage.getItem("token");
   const dispatch = useDispatch();
 
   useEffect(() => {
