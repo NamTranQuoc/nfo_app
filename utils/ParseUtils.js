@@ -1,51 +1,9 @@
-import IntlMessages from "./IntlMessages";
 import React from "react";
 import jwt from 'jwt-decode';
-import {Tag} from "antd";
-
-export function getStatusV2(status) {
-  if (status === null) {
-    return ""
-  }
-  return <IntlMessages id={`admin.status.${status}`}/>
-}
-
-export function getStatusTagV2(status) {
-  if (status === null) {
-    return ""
-  }
-  switch (status) {
-    case "shutdown":
-    case "cancel":
-      return <Tag color={"red"}><IntlMessages id={`admin.status.${status}`}/></Tag>
-    case "block":
-      return <Tag color={"orange"}><IntlMessages id={`admin.status.${status}`}/></Tag>
-    case "create":
-      return <Tag color={"blue"}><IntlMessages id={`admin.status.${status}`}/></Tag>
-    case "coming":
-      return <Tag color={"yellow"}><IntlMessages id={`admin.status.${status}`}/></Tag>
-    default:
-      return <Tag color={"green"}><IntlMessages id={`admin.status.${status}`}/></Tag>
-  }
-}
-
-export function getDOW(value) {
-  if (value === null) {
-    return "-"
-  }
-  return <IntlMessages id={`admin.class.dow.${value}`}/>
-}
 
 export function getDate(timestamp) {
   const date = new Date(timestamp);
   return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-}
-
-export function getGender(gender) {
-  if (gender === null) {
-    return "-"
-  }
-  return <IntlMessages id={`admin.user.gender.${gender}`}/>
 }
 
 function imageExists(image_url) {
@@ -78,8 +36,7 @@ export function getMoney(value) {
   return `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-export function getRoleCurrent() {
-  const token = localStorage.getItem("token");
+export const getRoleCurrent = (token) => {
   if (token != null) {
     const parse = jwt(token);
     return parse.role;
@@ -87,27 +44,12 @@ export function getRoleCurrent() {
   return null;
 }
 
-export function getMemberIdCurrent() {
-  const token = localStorage.getItem("token");
+export const getMemberIdCurrent = (token) => {
   if (token != null) {
     const parse = jwt(token);
     return parse.member_id;
   }
   return null;
-}
-
-export function getStatus(status) {
-  if (status === null) {
-    return "-"
-  }
-  return <IntlMessages id={`admin.categoryCourse.table.${status}`}/>
-}
-
-export function getType(type) {
-  if (type === null) {
-    return "-"
-  }
-  return <IntlMessages id={`admin.document.type.${type}`}/>
 }
 
 export function getItemNameById(listItem, id) {

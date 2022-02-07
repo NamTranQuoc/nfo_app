@@ -1,9 +1,12 @@
-import {SIGNIN_USER} from "../../constants/ActionTypes";
+import {LOGOUT, SIGNIN_USER} from "../../constants/ActionTypes";
 import {call, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
 import {Alert} from "react-native";
 import {onHideLoader, onShowLoader} from "../actions/CommonAction";
+import {setString} from "../../utils/LocalStorage";
+import {getMemberIdCurrent, getRoleCurrent} from "../../utils/ParseUtils";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const INSTRUCTOR_API_URL = `${HOST}/auth`
 
@@ -22,6 +25,9 @@ function* SignInGenerate({data}) {
     } else if (response.data.code !== 9999) {
       Alert.alert(response.data.message);
     } else {
+      setString("token", response.data.payload);
+      setString("member_id", getMemberIdCurrent(response.data.payload));
+      setString("role", getRoleCurrent(response.data.payload));
       data.navigation.navigate("Root");
     }
   } catch (error) {
@@ -44,3 +50,29 @@ const SignInRequest = async (data) => {
 }
 
 //end sign in
+
+
+//start log out
+
+export function* takeEveryLogOut() {
+  yield takeEvery(LOGOUT, LogOutGenerate);
+}
+
+function* LogOutGenerate() {
+  try {
+    yield put(onShowLoader());
+    yield call(LogOutRequest);
+  } catch (error) {
+    Alert.alert(error);
+  } finally {
+    yield put(onHideLoader());
+  }
+}
+
+const LogOutRequest = async () => {
+  await AsyncStorage.removeItem("token");
+  await AsyncStorage.removeItem("role");
+  await AsyncStorage.removeItem("member_id");
+}
+
+//end log out

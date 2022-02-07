@@ -2,18 +2,31 @@ import {Alert, StyleSheet, Text} from 'react-native';
 import {View} from '../components/Themed';
 import {Button, TextInput} from "react-native-paper";
 import * as React from 'react';
+import {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {signInAction} from "../redux/actions/AuthAction";
 import {RootStackScreenProps} from "../types";
 import Layout from "../constants/Layout";
 import {color1} from "../constants/Colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
-  // const {token} = useSelector(({auth}) => auth);
+  const token = AsyncStorage.getItem("token");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    checkLogin();
+  }, [])
+
+  const checkLogin = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token !== null) {
+      navigation.navigate("Root");
+    }
+  }
 
   const onSignIn = () => {
     dispatch(signInAction(username, password, navigation));

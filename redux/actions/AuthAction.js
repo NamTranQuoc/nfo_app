@@ -1,4 +1,4 @@
-import {SIGNIN_USER} from "../../constants/ActionTypes";
+import {LOGOUT, SIGNIN_USER} from "../../constants/ActionTypes";
 
 export const signInAction = (username, password, navigation) => {
   return {
@@ -8,5 +8,11 @@ export const signInAction = (username, password, navigation) => {
       password: password,
       navigation: navigation
     }
+  }
+}
+
+export const logoutAction = () => {
+  return {
+    type: LOGOUT
   }
 }
