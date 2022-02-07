@@ -5,6 +5,8 @@ import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import {RootStackScreenProps} from "../types";
 import {signUpAction} from "../redux/actions/MemberAction";
+import Layout from "../constants/Layout";
+import {color1} from "../constants/Colors";
 
 export default function SignUpScreen({navigation}: RootStackScreenProps<'SignUp'>) {
   const [name, setName] = React.useState("");
@@ -19,7 +21,7 @@ export default function SignUpScreen({navigation}: RootStackScreenProps<'SignUp'
     <View style={[styles.container, {
       flexDirection: "column"
     }]}>
-      <View style={{flex: 1, backgroundColor: "#7cd0ea", borderBottomLeftRadius: 40, borderBottomRightRadius: 40}}>
+      <View style={{flex: 1, backgroundColor: color1, borderBottomLeftRadius: 40, borderBottomRightRadius: 40}}>
         <Button color={"#ffffff"}
                 style={{marginTop: 30, width: 100, alignSelf: 'flex-end'}}
                 onPress={() => {
@@ -38,24 +40,24 @@ export default function SignUpScreen({navigation}: RootStackScreenProps<'SignUp'
         <TextInput
           label="Name"
           mode={'outlined'}
-          theme={{roundness: 27}}
+          theme={{roundness: 30}}
           value={name}
           onChangeText={t => setName(t)}
-          style={{marginTop: 30, marginLeft: 30, marginRight: 30, paddingLeft: 10}}
+          style={{marginTop: 30, marginLeft: 30, marginRight: 30, paddingLeft: 10, height: 60}}
         />
         <TextInput
           label="Email"
           mode={'outlined'}
-          theme={{roundness: 27}}
+          theme={{roundness: 30}}
           value={email}
           onChangeText={t => setEmail(t)}
-          style={{marginTop: 10, marginLeft: 30, marginRight: 30, paddingLeft: 10}}
+          style={{marginTop: 10, marginLeft: 30, marginRight: 30, paddingLeft: 10, height: 60}}
         />
         <Button color={"#0a6882"}
-                style={{marginTop: 30, width: 300, alignSelf: 'center'}}
+                style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
                 mode={'contained'}
-                theme={{roundness: 27}}
-                labelStyle={{fontSize: 20}}
+                theme={{roundness: 30}}
+                labelStyle={{fontSize: 20, marginTop: 15}}
                 onPress={onSignUp}>
           Sign Up
         </Button>

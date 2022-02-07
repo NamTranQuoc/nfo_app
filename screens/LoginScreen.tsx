@@ -5,11 +5,14 @@ import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import {signInAction} from "../redux/actions/AuthAction";
 import {RootStackScreenProps} from "../types";
+import Layout from "../constants/Layout";
+import {color1} from "../constants/Colors";
 
 export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+  // const {token} = useSelector(({auth}) => auth);
   const dispatch = useDispatch();
 
   const onSignIn = () => {
@@ -20,7 +23,7 @@ export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>)
     <View style={[styles.container, {
       flexDirection: "column"
     }]}>
-      <View style={{flex: 1, backgroundColor: "#7cd0ea", borderBottomLeftRadius: 40, borderBottomRightRadius: 40}}>
+      <View style={{flex: 1, backgroundColor: color1, borderBottomLeftRadius: 40, borderBottomRightRadius: 40}}>
         <Button color={"#ffffff"}
                 style={{marginTop: 30, width: 100, alignSelf: 'flex-end'}}
                 onPress={() => {
@@ -39,26 +42,33 @@ export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>)
         <TextInput
           label="Username"
           mode={'outlined'}
-          theme={{roundness: 27}}
+          theme={{roundness: 30}}
           value={username}
           onChangeText={t => setUsername(t)}
-          style={{marginTop: 30, marginLeft: 30, marginRight: 30, paddingLeft: 10}}
+          style={{
+            marginTop: 30,
+            marginLeft: 30,
+            marginRight: 30,
+            paddingLeft: 10,
+            height: 60,
+            justifyContent: "center"
+          }}
         />
         <TextInput
           label="Password"
           secureTextEntry={!showPassword}
           mode={'outlined'}
-          theme={{roundness: 27}}
+          theme={{roundness: 30}}
           value={password}
           onChangeText={t => setPassword(t)}
-          style={{marginTop: 10, marginLeft: 30, marginRight: 30, paddingLeft: 10}}
-          right={<TextInput.Icon name="eye" style={{marginRight: 10}} onPress={() => {
+          style={{marginTop: 10, marginLeft: 30, marginRight: 30, paddingLeft: 10, height: 60}}
+          right={<TextInput.Icon name="eye" style={{marginRight: 10, marginTop: 15}} onPress={() => {
             setShowPassword(!showPassword)
           }}/>}
         />
         <Text style={{
           color: '#e9145c',
-          fontSize: 13,
+          fontSize: 15,
           fontWeight: "bold",
           marginTop: 10,
           marginRight: 30,
@@ -67,21 +77,21 @@ export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>)
           Forget password?
         </Text>
         <Button color={"#0a6882"}
-                style={{marginTop: 30, width: 300, alignSelf: 'center'}}
+                style={{marginTop: 20, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
                 mode={'contained'}
-                theme={{roundness: 27}}
-                labelStyle={{fontSize: 20}}
+                theme={{roundness: 30}}
+                labelStyle={{fontSize: 20, marginTop: 15}}
                 onPress={onSignIn}>
           Sign In
         </Button>
-        <Text style={{color: '#7f92a0', fontSize: 13, marginTop: 40, alignSelf: 'center'}}>
+        <Text style={{color: '#7f92a0', fontSize: 13, marginTop: 30, alignSelf: 'center'}}>
           Or sign in with social media
         </Text>
         <Button color={"#f6f6f7"}
-                style={{marginTop: 30, width: 300, alignSelf: 'center'}}
+                style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
                 mode={'contained'}
-                theme={{roundness: 27}}
-                labelStyle={{fontSize: 20, color: '#394e5f'}}
+                theme={{roundness: 30}}
+                labelStyle={{fontSize: 20, marginTop: 15, color: '#394e5f'}}
                 onPress={() => {
                   Alert.alert("Chưa có bạn ơi!!");
                   // return navigation.navigate("Root");
