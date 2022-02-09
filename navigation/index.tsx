@@ -23,6 +23,7 @@ import SignUpScreen from "../screens/SignUpScreen";
 import {Header} from "../screens/user/Header";
 import InformationScreen from "../screens/user/InformationScreen";
 import {HeaderModal} from "../screens/user/HeaderModal";
+import ChangePasswordScreen from "../screens/user/ChangePasswordScreen";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
   return (
@@ -50,6 +51,7 @@ function RootNavigator() {
       <Stack.Group screenOptions={{presentation: 'modal', header: HeaderModal}}>
         <Stack.Screen name="Modal" component={ModalScreen}/>
         <Stack.Screen name="Information" component={InformationScreen}/>
+        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen}/>
       </Stack.Group>
     </Stack.Navigator>
   );

@@ -1,4 +1,4 @@
-import {LOGOUT, SIGNIN_USER} from "../../constants/ActionTypes";
+import {CHANGE_PASSWORD, LOGOUT, SIGNIN_USER} from "../../constants/ActionTypes";
 import {call, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
@@ -78,3 +78,48 @@ const LogOutRequest = async () => {
 }
 
 //end log out
+
+
+//start change password
+
+export function* takeEveryChangePassword() {
+  yield takeEvery(CHANGE_PASSWORD, ChangePasswordGenerate);
+}
+
+function* ChangePasswordGenerate({data}) {
+  try {
+    yield put(onShowLoader());
+    const response = yield call(ChangePasswordRequest, data);
+    if (response.status !== 200) {
+      Alert.alert(response.status);
+    } else if (response.data.code !== 9999) {
+      Alert.alert(response.data.message);
+    } else {
+      data.navigation.navigate("More");
+      Alert.alert("Đổi mật khẩu thành công");
+    }
+  } catch (error) {
+    Alert.alert(error);
+  } finally {
+    yield put(onHideLoader());
+  }
+}
+
+const ChangePasswordRequest = async (data) => {
+  const token = await AsyncStorage.getItem("token");
+  return await axios({
+    method: "POST",
+    url: `${INSTRUCTOR_API_URL}/change_password`,
+    data: {
+      old_password: data.oldPassword,
+      new_password: data.newPassword,
+      confirm_password: data.confirmPassword,
+    },
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  }).then(response => response)
+      .catch(error => error)
+}
+
+//end change password

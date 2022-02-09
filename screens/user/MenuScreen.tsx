@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet} from 'react-native';
+import {Alert, ScrollView, StyleSheet} from 'react-native';
 import {Text, View} from '../../components/Themed';
 import {RootTabScreenProps} from "../../types";
 import {useDispatch, useSelector} from 'react-redux';
@@ -40,7 +40,7 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
                   theme={{roundness: 30}}
                   labelStyle={{fontSize: 20, marginTop: 15}}
                   uppercase={false}
-            // onPress={onSignIn}
+                  onPress={() => Alert.alert("Chưa có bạn ơi!!")}
           >
             Đăng bán
           </Button>
@@ -50,7 +50,17 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
                   theme={{roundness: 30}}
                   labelStyle={{fontSize: 20, marginTop: 15}}
                   uppercase={false}
-                  onPress={() => navigation.navigate("Information")}
+                  onPress={() => Alert.alert("Chưa có bạn ơi!!")}
+          >
+            Các sản phẩm đang bán
+          </Button>
+          <Button color={"#f0f0f0"}
+                  style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
+                  mode={'contained'}
+                  theme={{roundness: 30}}
+                  labelStyle={{fontSize: 20, marginTop: 15}}
+                  uppercase={false}
+                  onPress={() => navigation.navigate("ChangePassword")}
           >
             Đổi mật khẩu
           </Button>

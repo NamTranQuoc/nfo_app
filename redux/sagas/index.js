@@ -1,5 +1,5 @@
 import {all} from 'redux-saga/effects';
-import {takeEveryLogOut, takeEverySignIn} from "./AuthSaga";
+import {takeEveryChangePassword, takeEveryLogOut, takeEverySignIn} from "./AuthSaga";
 import {takeEveryGetCurrentMember, takeEverySignUp, takeEveryUpdateMember} from "./MemberSaga";
 
 export default function* rootSaga() {
@@ -8,6 +8,7 @@ export default function* rootSaga() {
     takeEverySignUp(),
     takeEveryLogOut(),
     takeEveryGetCurrentMember(),
-    takeEveryUpdateMember()
+    takeEveryUpdateMember(),
+    takeEveryChangePassword(),
   ]);
 }
