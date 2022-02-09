@@ -1,11 +1,11 @@
-import {GET_CURRENT_MEMBER, SIGNUP_USER} from "../../constants/ActionTypes";
+import {GET_CURRENT_MEMBER, SIGNUP_USER, UPDATE_MEMBER} from "../../constants/ActionTypes";
 import {call, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
 import {Alert} from "react-native";
 import {onHideLoader, onShowLoader} from "../actions/CommonAction";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getCurrentMemberSuccess} from "../actions/MemberAction";
+import {getCurrentMember, getCurrentMemberSuccess} from "../actions/MemberAction";
 
 const INSTRUCTOR_API_URL = `${HOST}/member`
 
@@ -56,7 +56,6 @@ export function* takeEveryGetCurrentMember() {
 
 function* GetCurrentMemberGenerate() {
   try {
-    yield put(onShowLoader());
     const response = yield call(GetCurrentMemberRequest);
     if (response.status !== 200) {
       Alert.alert(response.status);
@@ -67,8 +66,6 @@ function* GetCurrentMemberGenerate() {
     }
   } catch (error) {
     Alert.alert(error);
-  } finally {
-    yield put(onHideLoader());
   }
 }
 
@@ -86,3 +83,50 @@ const GetCurrentMemberRequest = async () => {
 }
 
 //end sign up
+
+//start update member
+
+export function* takeEveryUpdateMember() {
+  yield takeEvery(UPDATE_MEMBER, UpdateMemberGenerate);
+}
+
+function* UpdateMemberGenerate({data}) {
+  try {
+    yield put(onShowLoader());
+    const response = yield call(UpdateMemberRequest, data);
+    if (response.status !== 200) {
+      Alert.alert(response.status);
+    } else if (response.data.code !== 9999) {
+      Alert.alert(response.data.message);
+    } else {
+      yield put(getCurrentMember());
+      Alert.alert("Cập nhật thông tin cá nhân thành công");
+    }
+  } catch (error) {
+    Alert.alert(error);
+  } finally {
+    yield put(onHideLoader());
+  }
+}
+
+const UpdateMemberRequest = async (data) => {
+  const id = await AsyncStorage.getItem("member_id");
+  const token = await AsyncStorage.getItem("token");
+  return await axios({
+    method: "PUT",
+    url: `${INSTRUCTOR_API_URL}/update`,
+    data: {
+      id: id,
+      name: data.name,
+      phone_number: data.phone_number,
+      gender: data.gender,
+      avatar: data.avatar
+    },
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  }).then(response => response)
+      .catch(error => error)
+}
+
+//end update member

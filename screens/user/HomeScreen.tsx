@@ -1,6 +1,7 @@
 import {Text, View} from '../../components/Themed';
 import {color1} from "../../constants/Colors";
 import {RootTabScreenProps} from "../../types";
+import * as React from 'react';
 
 export default function HomeScreen({navigation}: RootTabScreenProps<'Home'>) {
   return (

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import {Text, View} from '../../components/Themed';
 import {RootTabScreenProps} from "../../types";
 import {useDispatch, useSelector} from 'react-redux';
@@ -17,46 +17,58 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
     return null
   } else {
     return (
-      <View style={styles.container}>
-        <Avatar.Image size={120}
-                      source={{uri: member.avatar !== null ? member.avatar : 'https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/default%2Favatar-default.png?alt=media'}}
-                      style={{marginTop: 30}}/>
-        <Text style={{marginTop: 10, fontSize: 20, fontWeight: "bold"}}>{member.name}</Text>
-        <Text style={{fontSize: 15}}>{member.email}</Text>
-        <Button color={"#f0f0f0"}
-                style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
-                mode={'contained'}
-                theme={{roundness: 30}}
-                labelStyle={{fontSize: 20, marginTop: 15}}
-                uppercase={false}
-          // onPress={onSignIn}
-        >
-          Thông tin cá nhân
-        </Button>
-        <Button color={"#f0f0f0"}
-                style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
-                mode={'contained'}
-                theme={{roundness: 30}}
-                labelStyle={{fontSize: 20, marginTop: 15}}
-                uppercase={false}
-          // onPress={onSignIn}
-        >
-          Đăng bán
-        </Button>
-        <Button color={"#f0f0f0"}
-                style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
-                mode={'contained'}
-                theme={{roundness: 30}}
-                labelStyle={{fontSize: 20, marginTop: 15}}
-                uppercase={false}
-                onPress={() => {
-                  dispatch(logoutAction());
-                  navigation.navigate("Login");
-                }}
-        >
-          Đăng xuất
-        </Button>
-      </View>
+      <ScrollView style={styles.container}>
+        <View style={{alignItems: "center"}}>
+          <Avatar.Image size={120}
+                        source={{uri: member.avatar !== null ? member.avatar : 'https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/default%2Favatar-default.png?alt=media'}}
+                        style={{marginTop: 30}}/>
+          <Text style={{marginTop: 10, fontSize: 20, fontWeight: "bold"}}>{member.name}</Text>
+          <Text style={{fontSize: 15}}>{member.email}</Text>
+          <Button color={"#f0f0f0"}
+                  style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
+                  mode={'contained'}
+                  theme={{roundness: 30}}
+                  labelStyle={{fontSize: 20, marginTop: 15}}
+                  uppercase={false}
+                  onPress={() => navigation.navigate("Information")}
+          >
+            Thông tin cá nhân
+          </Button>
+          <Button color={"#f0f0f0"}
+                  style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
+                  mode={'contained'}
+                  theme={{roundness: 30}}
+                  labelStyle={{fontSize: 20, marginTop: 15}}
+                  uppercase={false}
+            // onPress={onSignIn}
+          >
+            Đăng bán
+          </Button>
+          <Button color={"#f0f0f0"}
+                  style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60}}
+                  mode={'contained'}
+                  theme={{roundness: 30}}
+                  labelStyle={{fontSize: 20, marginTop: 15}}
+                  uppercase={false}
+                  onPress={() => navigation.navigate("Information")}
+          >
+            Đổi mật khẩu
+          </Button>
+          <Button color={"#f0f0f0"}
+                  style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60, marginBottom: 30}}
+                  mode={'contained'}
+                  theme={{roundness: 30}}
+                  labelStyle={{fontSize: 20, marginTop: 15}}
+                  uppercase={false}
+                  onPress={() => {
+                    dispatch(logoutAction());
+                    navigation.navigate("Login");
+                  }}
+          >
+            Đăng xuất
+          </Button>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -64,6 +76,5 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
   },
 });

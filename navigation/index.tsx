@@ -21,6 +21,8 @@ import LinkingConfiguration from './LinkingConfiguration';
 import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import {Header} from "../screens/user/Header";
+import InformationScreen from "../screens/user/InformationScreen";
+import {HeaderModal} from "../screens/user/HeaderModal";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
   return (
@@ -45,8 +47,9 @@ function RootNavigator() {
       <Stack.Screen name="SignUp" component={SignUpScreen} options={{headerShown: false}}/>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{headerShown: false}}/>
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{title: 'Oops!'}}/>
-      <Stack.Group screenOptions={{presentation: 'modal'}}>
+      <Stack.Group screenOptions={{presentation: 'modal', header: HeaderModal}}>
         <Stack.Screen name="Modal" component={ModalScreen}/>
+        <Stack.Screen name="Information" component={InformationScreen}/>
       </Stack.Group>
     </Stack.Navigator>
   );

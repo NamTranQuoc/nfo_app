@@ -20,7 +20,8 @@ export type RootStackParamList = {
   NotFound: undefined;
   Login: undefined;
   SignUp: undefined;
-  Loader: undefined
+  Loader: undefined;
+  Information: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<RootStackParamList,

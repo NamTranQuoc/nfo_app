@@ -1,14 +1,13 @@
-import {Alert, Pressable} from 'react-native';
+import {Alert, Pressable, Text} from 'react-native';
 import Layout from "../../constants/Layout";
 
 import {View} from '../../components/Themed';
-import {TextInput} from "react-native-paper";
 import {FontAwesome} from "@expo/vector-icons";
 import * as React from "react";
 import {RootStackScreenProps} from "../../types";
 import {color1} from "../../constants/Colors";
 
-export const Header = ({navigation}: RootStackScreenProps<'Root'>) => {
+export const HeaderModal = ({navigation}: RootStackScreenProps<'Root'>) => {
   return (
     <View style={{
       display: "flex",
@@ -20,26 +19,18 @@ export const Header = ({navigation}: RootStackScreenProps<'Root'>) => {
       borderBottomLeftRadius: 30,
       borderBottomRightRadius: 30
     }}>
-      <TextInput
-        label="Search"
-        mode={"outlined"}
-        theme={{roundness: 30}}
-        // value={username}
-        // onChangeText={t => setUsername(t)}
-        style={{width: Layout.window.width - 85, marginLeft: 20, marginRight: 20, paddingLeft: 10}}
-      />
+      <Text
+        style={{width: Layout.window.width - 85, marginLeft: 43, textAlign: "center", color: '#ffffff', fontSize: 30, fontWeight: "bold"}}
+      >NFO</Text>
       <Pressable
-        onPress={() => {
-          // navigation.navigate('Modal');
-          Alert.alert("Chưa có bạn ơi");
-        }}
+        onPress={() => navigation.navigate("More")}
         style={({pressed}) => ({
           opacity: pressed ? 0.5 : 1
         })}>
         <FontAwesome
-          name="cart-arrow-down"
+          name="close"
           size={25}
-          style={{alignItems: "center", marginRight: 20}}
+          style={{alignItems: "center", marginRight: 2, color: "#ffffff"}}
         />
       </Pressable>
     </View>
