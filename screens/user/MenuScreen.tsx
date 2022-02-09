@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import {Text, View} from '../../components/Themed';
 import {RootTabScreenProps} from "../../types";
 import {useDispatch, useSelector} from 'react-redux';
@@ -55,7 +55,13 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
             Đổi mật khẩu
           </Button>
           <Button color={"#f0f0f0"}
-                  style={{marginTop: 30, width: Layout.window.width - 60, alignSelf: 'center', height: 60, marginBottom: 30}}
+                  style={{
+                    marginTop: 30,
+                    width: Layout.window.width - 60,
+                    alignSelf: 'center',
+                    height: 60,
+                    marginBottom: 30
+                  }}
                   mode={'contained'}
                   theme={{roundness: 30}}
                   labelStyle={{fontSize: 20, marginTop: 15}}

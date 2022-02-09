@@ -1,5 +1,6 @@
 import React from "react";
 import jwt from 'jwt-decode';
+import {storage} from "../firebase/firebase";
 
 export function getDate(timestamp) {
   const date = new Date(timestamp);
@@ -77,4 +78,8 @@ export function getTimeOfShift(listItem, id) {
     }
   }
   return "-";
+}
+
+export function uploadImage(blob, name, folder) {
+  storage.ref(folder + "/" + name).put(blob);
 }

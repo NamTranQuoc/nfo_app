@@ -1,4 +1,4 @@
-import {GET_CURRENT_MEMBER_SUCCESS} from "../../constants/ActionTypes";
+import {GET_CURRENT_MEMBER, GET_CURRENT_MEMBER_SUCCESS} from "../../constants/ActionTypes";
 
 const INIT_STATE = {
   member: null,
@@ -10,6 +10,12 @@ const MemberReducer = (state = INIT_STATE, action) => {
       return {
         ...state,
         member: action.data.member
+      }
+    }
+    case GET_CURRENT_MEMBER: {
+      return {
+        ...state,
+        member: null
       }
     }
     default:

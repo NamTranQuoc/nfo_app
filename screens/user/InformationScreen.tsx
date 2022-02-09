@@ -9,6 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 import Layout from "../../constants/Layout";
 import {Picker} from "@react-native-picker/picker";
 import {updateMemberAction} from "../../redux/actions/MemberAction";
+import * as ImagePicker from 'expo-image-picker';
+import {uploadImage} from "../../utils/ParseUtils";
 
 export default function InformationScreen({navigation}: RootTabScreenProps<'Information'>) {
   const dispatch = useDispatch();
@@ -20,15 +22,37 @@ export default function InformationScreen({navigation}: RootTabScreenProps<'Info
   const [avatar, setAvatar] = useState(null);
 
   function onsubmit() {
-    dispatch(updateMemberAction(name, phone, gender, null));
+    const fileName = member._id + ".png";
+    if (avatar != null) {
+      uploadImage(avatar, fileName, "avatars");
+    }
+    dispatch(updateMemberAction(name, phone, gender, "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/avatars%2F" + fileName + "?alt=media"));
   }
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setUrlAvatar(result.uri);
+      const file = await fetch(result.uri);
+      const blob = await file.blob();
+      setAvatar(blob);
+    }
+  };
 
   return (
     <ScrollView style={styles.container}>
       <View style={{alignItems: "center"}}>
         <Avatar.Image size={120}
                       source={{uri: urlAvatar !== null ? urlAvatar : 'https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/default%2Favatar-default.png?alt=media'}}
-                      style={{marginTop: 30}}/>
+                      style={{marginTop: 30}}
+                      onTouchStart={pickImage}/>
         <Text style={{marginTop: 10, fontSize: 20, fontWeight: "bold"}}>{member.email}</Text>
       </View>
       <View style={{flex: 2, backgroundColor: "#ffffff", flexDirection: 'column'}}>
