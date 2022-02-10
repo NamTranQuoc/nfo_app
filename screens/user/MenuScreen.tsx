@@ -27,9 +27,12 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
             <Avatar.Image size={120}
                           source={{uri: member.avatar !== null ? member.avatar : 'https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/default%2Favatar-default.png?alt=media'}}
                           style={{marginTop: 30}}/>
-            <Text style={{marginTop: 10, fontSize: 20, fontWeight: "bold"}}>{member.name}</Text>
+            <Text style={{marginTop: 10, fontSize: 20, fontWeight: "bold"}}>{member !== null ? member.name : ""}</Text>
             <Text style={{fontSize: 15}}>{member.email}</Text>
-          </> : null
+          </> :
+          <Avatar.Image size={120}
+                        source={{uri: 'https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/default%2Favatar-default.png?alt=media'}}
+                        style={{marginTop: 30}}/>
         }
 
         <Button color={"#f0f0f0"}
