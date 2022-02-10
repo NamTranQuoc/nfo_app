@@ -12,12 +12,6 @@ const MemberReducer = (state = INIT_STATE, action) => {
         member: action.data.member
       }
     }
-    case GET_CURRENT_MEMBER: {
-      return {
-        ...state,
-        member: null
-      }
-    }
     default:
       return state;
   }
