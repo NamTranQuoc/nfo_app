@@ -1,4 +1,4 @@
-import {GET_CURRENT_MEMBER, GET_CURRENT_MEMBER_SUCCESS} from "../../constants/ActionTypes";
+import {GET_CURRENT_MEMBER_SUCCESS} from "../../constants/ActionTypes";
 
 const INIT_STATE = {
   member: null,
