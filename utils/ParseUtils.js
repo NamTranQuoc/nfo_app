@@ -1,5 +1,6 @@
 import React from "react";
 import jwt from 'jwt-decode';
+import {storage} from "../firebase/firebase";
 
 export function getDate(timestamp) {
   const date = new Date(timestamp);
@@ -24,12 +25,8 @@ export function getImageURL(path) {
   return "";
 }
 
-export function getFileURL(path) {
-  const url = "https://firebasestorage.googleapis.com/v0/b/englishcenter-2021.appspot.com/o/documents%2F" + path;
-  if (imageExists(url)) {
-    return url + "?alt=media";
-  }
-  return "";
+export function getFileURL(ref, name) {
+  return "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/" + ref + "%2F" + name + "?alt=media";
 }
 
 export function getMoney(value) {
@@ -77,4 +74,8 @@ export function getTimeOfShift(listItem, id) {
     }
   }
   return "-";
+}
+
+export function uploadImage(blod, name, path) {
+  storage.ref(path + "/" + name).put(blod);
 }

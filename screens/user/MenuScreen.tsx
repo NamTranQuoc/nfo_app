@@ -14,7 +14,9 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
   const {member} = useSelector(({member}) => member);
 
   useEffect(() => {
-    dispatch(getCurrentMember());
+    if (member === null) {
+      dispatch(getCurrentMember());
+    }
   }, [])
 
   return (

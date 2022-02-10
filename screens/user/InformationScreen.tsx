@@ -10,6 +10,8 @@ import Layout from "../../constants/Layout";
 import {Picker} from "@react-native-picker/picker";
 import {updateMemberAction} from "../../redux/actions/MemberAction";
 import * as ImagePicker from 'expo-image-picker';
+import {storage} from "../../firebase/firebase";
+import {getFileURL, uploadImage} from "../../utils/ParseUtils";
 
 export default function InformationScreen({navigation}: RootTabScreenProps<'Information'>) {
   const dispatch = useDispatch();
@@ -21,7 +23,12 @@ export default function InformationScreen({navigation}: RootTabScreenProps<'Info
   const [avatar, setAvatar] = useState(null);
 
   function onsubmit() {
-    dispatch(updateMemberAction(name, phone, gender, null));
+    let fileName = null;
+    if (avatar !== null) {
+      fileName = member._id + ".png";
+      uploadImage(avatar, fileName, "avatars");
+    }
+    dispatch(updateMemberAction(name, phone, gender, getFileURL("avatars", fileName)));
   }
 
   const pickImage = async () => {
