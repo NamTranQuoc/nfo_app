@@ -1,67 +1,16 @@
-import {View} from './Themed';
+import {Text, View} from './Themed';
 import * as React from 'react';
-import {TextInput} from "react-native-paper";
+import {Avatar} from "react-native-paper";
+import {color1} from "../constants/Colors";
 
-export default function ProductType() {
+export default function ItemCategory({category}) {
   return (
-      <View style={{
-        borderRadius: 30,
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight: 10,
-        justifyContent: "center",
-        borderStyle: "solid",
-        borderColor: "#6c6767",
-        borderWidth: 1,
-      }}>
-        <TextInput
-            label="Name type"
-            mode={'outlined'}
-            theme={{roundness: 30}}
-            // value={name}
-            // onChangeText={t => setName(t)}
-            style={{
-              marginTop: 10,
-              marginBottom: 10,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-              height: 60,
-              justifyContent: "center"
-            }}
+      <View style={{display: "flex", flexDirection: "column", alignItems: "center", marginLeft: 20}}>
+        <Avatar.Image size={60}
+                      source={{uri: category.image}}
+            // onTouchStart={pickImage}
         />
-        <TextInput
-            label="Quantity"
-            mode={'outlined'}
-            theme={{roundness: 30}}
-            // value={name}
-            // onChangeText={t => setName(t)}
-            style={{
-              marginTop: 10,
-              marginBottom: 10,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-              height: 60,
-              justifyContent: "center"
-            }}
-        />
-        <TextInput
-            label="Price"
-            mode={'outlined'}
-            theme={{roundness: 30}}
-            // value={name}
-            // onChangeText={t => setName(t)}
-            style={{
-              marginTop: 10,
-              marginBottom: 10,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-              height: 60,
-              justifyContent: "center"
-            }}
-        />
+        <Text style={{marginTop: 5, fontSize: 12}}>{category.name}</Text>
       </View>
   )
 }

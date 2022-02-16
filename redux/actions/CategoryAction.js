@@ -1,39 +1,16 @@
-import {GET_CURRENT_MEMBER, GET_CURRENT_MEMBER_SUCCESS, SIGNUP_USER, UPDATE_MEMBER} from "../../constants/ActionTypes";
+import {GET_CATEGORIES, GET_CATEGORIES_SUCCESS} from "../../constants/ActionTypes";
 
-export const signUpAction = (name, email, navigation) => {
+export const getCategoriesAction = () => {
   return {
-    type: SIGNUP_USER,
-    data: {
-      name: name,
-      email: email,
-      navigation: navigation
-    }
+    type: GET_CATEGORIES,
   }
 }
 
-export const getCurrentMember = () => {
+export const getCategoriesSuccessAction = (categories) => {
   return {
-    type: GET_CURRENT_MEMBER
-  }
-}
-
-export const getCurrentMemberSuccess = (member) => {
-  return {
-    type: GET_CURRENT_MEMBER_SUCCESS,
+    type: GET_CATEGORIES_SUCCESS,
     data: {
-      member: member,
-    }
-  }
-}
-
-export const updateMemberAction = (name, phone_number, gender, avatar) => {
-  return {
-    type: UPDATE_MEMBER,
-    data: {
-      name: name,
-      phone_number: phone_number,
-      gender: gender,
-      avatar: avatar
+      categories: categories,
     }
   }
 }

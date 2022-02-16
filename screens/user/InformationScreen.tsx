@@ -10,7 +10,6 @@ import Layout from "../../constants/Layout";
 import {Picker} from "@react-native-picker/picker";
 import {updateMemberAction} from "../../redux/actions/MemberAction";
 import * as ImagePicker from 'expo-image-picker';
-import {storage} from "../../firebase/firebase";
 import {getFileURL, uploadImage} from "../../utils/ParseUtils";
 
 export default function InformationScreen({navigation}: RootTabScreenProps<'Information'>) {

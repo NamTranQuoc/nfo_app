@@ -1,4 +1,4 @@
-import {Alert, StyleSheet, Text} from 'react-native';
+import {Alert, ImageBackground, StyleSheet, Text} from 'react-native';
 import {View} from '../components/Themed';
 import {Button, TextInput} from "react-native-paper";
 import * as React from 'react';
@@ -35,21 +35,27 @@ export default function LoginScreen({navigation}: RootStackScreenProps<'Login'>)
     <View style={[styles.container, {
       flexDirection: "column"
     }]}>
-      <View style={{flex: 1, backgroundColor: color1, borderBottomLeftRadius: 40, borderBottomRightRadius: 40}}>
+      <ImageBackground source={require("../assets/images/background.png")}
+                       resizeMode={"contain"}
+                       style={{
+                         flex: 1,
+                         backgroundColor: color1,
+                         borderBottomLeftRadius: 40,
+                         borderBottomRightRadius: 40,
+                         flexDirection: 'column',
+                         justifyContent: 'space-between'
+                       }}>
         <Button color={"#ffffff"}
-                style={{marginTop: 30, width: 100, alignSelf: 'flex-end'}}
+                style={{width: 100, alignSelf: "flex-end", marginTop: 30}}
                 onPress={() => {
                   return navigation.navigate("SignUp");
                 }}>
           Sign Up
         </Button>
-        <Text style={{color: '#ffffff', fontSize: 60, fontWeight: "bold", alignSelf: 'center'}}>
-          NFO
-        </Text>
-        <Text style={{color: '#ffffff', fontSize: 30, fontWeight: "bold", marginTop: 20, marginLeft: 30}}>
+        <Text style={{color: "#ffffff", fontSize: 30, fontWeight: "bold", marginBottom: 20, marginLeft: 20}}>
           Sign In
         </Text>
-      </View>
+      </ImageBackground>
       <View style={{flex: 2, backgroundColor: "#ffffff", flexDirection: 'column'}}>
         <TextInput
           label="Username"

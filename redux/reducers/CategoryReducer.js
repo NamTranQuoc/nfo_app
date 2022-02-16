@@ -1,15 +1,15 @@
-import {GET_CURRENT_MEMBER_SUCCESS} from "../../constants/ActionTypes";
+import {GET_CATEGORIES_SUCCESS} from "../../constants/ActionTypes";
 
 const INIT_STATE = {
-  member: null,
+  categories: [],
 };
 
-const MemberReducer = (state = INIT_STATE, action) => {
+const CategoryReducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case GET_CURRENT_MEMBER_SUCCESS: {
+    case GET_CATEGORIES_SUCCESS: {
       return {
         ...state,
-        member: action.data.member
+        categories: action.data.categories
       }
     }
     default:
@@ -17,4 +17,4 @@ const MemberReducer = (state = INIT_STATE, action) => {
   }
 }
 
-export default MemberReducer;
+export default CategoryReducer;

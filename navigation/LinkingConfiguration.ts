@@ -42,6 +42,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       Modal: 'modal',
       Information: "information",
       ChangePassword: "changePassword",
+      PostForSale: "postForSale",
       NotFound: '*',
     },
   },

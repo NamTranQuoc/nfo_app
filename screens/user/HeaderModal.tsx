@@ -1,11 +1,10 @@
-import {Pressable, Text} from 'react-native';
-import Layout from "../../constants/Layout";
-
-import {View} from '../../components/Themed';
+import {ImageBackground, Pressable, View} from 'react-native';
 import {FontAwesome} from "@expo/vector-icons";
 import * as React from "react";
 import {RootStackScreenProps} from "../../types";
 import {color1} from "../../constants/Colors";
+import Layout from "../../constants/Layout";
+import {Text} from "../../components/Themed";
 
 export const HeaderModal = ({navigation}: RootStackScreenProps<'Root'>) => {
   return (
@@ -20,14 +19,7 @@ export const HeaderModal = ({navigation}: RootStackScreenProps<'Root'>) => {
       borderBottomRightRadius: 30
     }}>
       <Text
-        style={{
-          width: Layout.window.width - 85,
-          marginLeft: 43,
-          textAlign: "center",
-          color: '#ffffff',
-          fontSize: 30,
-          fontWeight: "bold"
-        }}
+        style={{width: Layout.window.width - 85, marginLeft: 43, textAlign: "center", color: '#ffffff', fontSize: 30, fontWeight: "bold"}}
       >NFO</Text>
       <Pressable
         onPress={() => navigation.navigate("More")}

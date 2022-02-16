@@ -51,7 +51,7 @@ export default function MenuScreen({navigation}: RootTabScreenProps<'More'>) {
                 theme={{roundness: 30}}
                 labelStyle={{fontSize: 20, marginTop: 15}}
                 uppercase={false}
-                onPress={() => Alert.alert("Chưa có bạn ơi!!")}
+                onPress={() => navigation.navigate("PostForSale")}
         >
           Đăng bán
         </Button>
