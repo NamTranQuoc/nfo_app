@@ -2,131 +2,179 @@ import {ScrollView, StyleSheet} from 'react-native';
 
 import {Text, View} from '../../components/Themed';
 import * as React from 'react';
-import {useState} from 'react';
 import {RootTabScreenProps} from "../../types";
-import {Avatar, Button, TextInput} from "react-native-paper";
-import {useDispatch, useSelector} from "react-redux";
+import {Button} from "react-native-paper";
+import {useDispatch} from "react-redux";
 import Layout from "../../constants/Layout";
-import {Picker} from "@react-native-picker/picker";
-import {updateMemberAction} from "../../redux/actions/MemberAction";
-import * as ImagePicker from 'expo-image-picker';
-import {getFileURL, uploadImage} from "../../utils/ParseUtils";
+import Carousel from 'react-native-snap-carousel';
+import CarouselCardItem, {ITEM_WIDTH, SLIDER_WIDTH} from '../../components/CarouselCardItem';
+import {color1} from "../../constants/Colors";
 
-export default function InformationScreen({navigation}: RootTabScreenProps<'Information'>) {
-  const dispatch = useDispatch();
-  const {member} = useSelector(({member}) => member);
-  const [name, setName] = useState(member.name);
-  const [gender, setGender] = useState(member.gender);
-  const [phone, setPhone] = useState(member.phone_number);
-  const [urlAvatar, setUrlAvatar] = useState(member.avatar);
-  const [avatar, setAvatar] = useState(null);
+const width = Layout.window.width - 10;
 
-  function onsubmit() {
-    let fileName = null;
-    if (avatar !== null) {
-      fileName = member._id + ".png";
-      uploadImage(avatar, fileName, "avatars");
-    }
-    dispatch(updateMemberAction(name, phone, gender, getFileURL("avatars", fileName)));
+const product = {
+  "name": "Jordan Flight 9",
+  "image": [
+    "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F1.png?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F1-1.png?alt=media",
+    "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F1-2.png?alt=media",
+  ],
+  "price": "790.000",
+  "types": [
+    "38-99%",
+    "38-97%",
+    "40-98%",
+  ]
+}
+
+const data = [
+  {
+    title: "Aenean leo",
+    body: "Ut tincidunt tincidunt erat. Sed cursus turpis vitae tortor. Quisque malesuada placerat nisl. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.",
+    imgUrl: "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F1.png?alt=media"
+  },
+  {
+    title: "In turpis",
+    body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
+    imgUrl: "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F1-1.png?alt=media"
+  },
+  {
+    title: "Lorem Ipsum",
+    body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
+    imgUrl: "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F1-2.png?alt=media"
   }
-
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      setUrlAvatar(result.uri);
-      const file = await fetch(result.uri);
-      const blob = await file.blob();
-      setAvatar(blob);
-    }
-  };
+]
+export default function DetailProductScreen({navigation}: RootTabScreenProps<'DetailProduct'>) {
+  const dispatch = useDispatch();
+  const isCarousel = React.useRef(null)
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={{alignItems: "center"}}>
-        <Avatar.Image size={120}
-                      source={{uri: urlAvatar !== null ? urlAvatar : 'https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/default%2Favatar-default.png?alt=media'}}
-                      style={{marginTop: 30}}
-                      onTouchStart={pickImage}/>
-        <Text style={{marginTop: 10, fontSize: 20, fontWeight: "bold"}}>{member.email}</Text>
+    <ScrollView style={{backgroundColor: "#fff"}}>
+      <View style={{
+        borderWidth: 2,
+        borderColor: color1,
+        borderRadius: 20,
+        marginTop: 20,
+        marginLeft: 10,
+        marginRight: 10
+      }}>
+        <Carousel
+          layout="tinder"
+          layoutCardOffset={9}
+          ref={isCarousel}
+          data={data}
+          renderItem={CarouselCardItem}
+          sliderWidth={SLIDER_WIDTH}
+          itemWidth={ITEM_WIDTH}
+          inactiveSlideShift={0}
+          useScrollView={true}
+        />
       </View>
-      <View style={{flex: 2, backgroundColor: "#ffffff", flexDirection: 'column'}}>
-        <TextInput
-          label="Name"
-          mode={'outlined'}
-          theme={{roundness: 30}}
-          value={name}
-          onChangeText={t => setName(t)}
-          style={{
-            marginTop: 10,
-            marginLeft: 30,
-            marginRight: 30,
-            paddingLeft: 10,
-            height: 60,
-            justifyContent: "center"
-          }}
-        />
+      <View>
+        <Text style={{margin: 10, fontSize: 20}}>{product.name}</Text>
         <View style={{
-          borderRadius: 30,
+          borderWidth: 2,
+          borderColor: color1,
+          borderRadius: 20,
+          margin: 10,
           marginTop: 10,
-          marginLeft: 30,
-          marginRight: 30,
-          height: 60,
-          justifyContent: "center",
-          borderStyle: "solid",
-          borderColor: "#6c6767",
-          borderWidth: 1,
-          backgroundColor: "#f6f6f6"
+          height: 70,
+          padding: 10,
+          display: "flex",
+          flexDirection: "row"
         }}>
-          <Picker
-            selectedValue={gender !== null ? gender : "male"}
-            style={{
-              height: 60,
-              marginLeft: 10
-            }}
-            onValueChange={(itemValue, itemIndex) => setGender(itemValue)}
-          >
-            <Picker.Item value="male" label="Nam"/>
-            <Picker.Item value="female" label="Nữ"/>
-            <Picker.Item value="other" label="Khác"/>
-          </Picker>
+          {product.types.map((item) => {
+            return <Button
+              mode="outlined"
+              onPress={() => console.log('Pressed')}
+              style={{
+                borderWidth: 2,
+                borderColor: "#000",
+                width: 100,
+                borderRadius: 10,
+                marginRight: 10
+              }}
+            labelStyle={{fontWeight: "bold", fontSize: 15}}>
+              {item}
+            </Button>
+          })}
         </View>
-        <TextInput
-          label="Phone number"
-          mode={'outlined'}
-          theme={{roundness: 30}}
-          value={phone}
-          onChangeText={t => setPhone(t)}
+      </View>
+      <View style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        margin: 10
+      }}>
+        <Text style={{fontSize: 20, marginTop: 0, color: "red", fontWeight: "bold"}}>₫{product.price}</Text>
+        <Button
+          mode="contained"
+          color={color1}
+          onPress={() => console.log('Pressed')}
           style={{
-            marginTop: 10,
-            marginLeft: 30,
-            marginRight: 30,
-            paddingLeft: 10,
-            height: 60,
-            justifyContent: "center"
-          }}
-        />
-        <Button color={"#0a6882"}
-                style={{
-                  marginTop: 30,
-                  width: Layout.window.width - 60,
-                  alignSelf: 'center',
-                  height: 60,
-                  marginBottom: 100
-                }}
-                mode={'contained'}
-                theme={{roundness: 30}}
-                labelStyle={{fontSize: 20, marginTop: 15}}
-                onPress={onsubmit}
-        >
-          Save
+            borderWidth: 2,
+            borderColor: "#000",
+            width: 150,
+            borderRadius: 10,
+          }}>
+          Add to cart
         </Button>
+      </View>
+      <View style={{
+        display: "flex",
+        margin: 10,
+        marginTop: 20
+      }}>
+        <Text style={{fontSize: 17, marginTop: 0, fontWeight: "bold"}}>Mô tả</Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          Jordan Flight 9 (Giày cũ)
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          - Condition: Giày chính hãng đã qua sử dụng.
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          - Giá tiền của sản phẩm sẽ phụ thuộc vào độ mới của từng đôi.
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          - Lưu ý: Các bạn trước khi đặt nên nhắn cho shop để xem ảnh chi tiết hoặc video đôi đó nhé, vì mỗi đôi giày 2hand sẽ có ngoại hình khác nhau.
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          💥 ĐẶC ĐIỂM SẢN PHẨM
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ✔ Giày dễ phối đồ thích hợp cho các hoạt động đi lại hàng ngày, chạy bộ
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ✔ Mũi Giày tròn, đế cao su tổng hợp, xẻ rãnh tạo cảm giác thoải mái khi đi
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ✔ Thích hợp với các mùa trong năm: Xuân - Hè - Thu - Đông
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          💥 HƯỚNG DẪN BẢO QUẢN
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ✔ Để giày ở nơi khô ráo thoáng mát để giữ giày được bền đẹp hơn
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ✔ Vệ sinh giày, dùng khăn hay bàn trải lông mềm để chải sạch giày cùng với nước tẩy rửa giày chuyên dụng với da hay da Pu
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ✔ Có thể giặt giày cùng với chất tẩy rửa nhẹ
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ❌ KHUYẾN CÁO
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ⛔ Không dùng hóa chất hay bột giặt có hoạt tính tẩy rửa mạnh
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ⛔ Không dùng bàn chải cứng để vệ sinh giày sẽ làm hư
+        </Text>
+        <Text style={{fontSize: 17, marginTop: 0}}>
+          ⛔ Không đi mưa ngâm nước lâu, không phơi giày trực tiếp dưới ngoài trời nắng gắt
+        </Text>
       </View>
     </ScrollView>
   );

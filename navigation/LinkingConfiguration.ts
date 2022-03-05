@@ -43,6 +43,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       Information: "information",
       ChangePassword: "changePassword",
       PostForSale: "postForSale",
+      DetailProduct: "DetailProduct",
       NotFound: '*',
     },
   },

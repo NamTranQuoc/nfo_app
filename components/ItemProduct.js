@@ -3,12 +3,12 @@ import * as React from 'react';
 import {Avatar} from "react-native-paper";
 import {color1} from "../constants/Colors";
 import Layout from "../constants/Layout";
-import {Image} from "react-native";
+import {Alert, Image} from "react-native";
 
 const widthProduct = Layout.window.width / 2 - 20;
 const widthImage = widthProduct - 10;
 
-export default function ItemProduct({product}) {
+export default function ItemProduct({product, navigation}) {
   return (
       <View style={{
         marginTop: 10,
@@ -19,7 +19,9 @@ export default function ItemProduct({product}) {
         borderRadius: 15,
         borderWidth: 2,
         borderColor: color1,
-      }}>
+      }}
+      onTouchEnd={() => navigation.navigate("DetailProduct")}
+      >
         <Image style={{height: widthImage, width: widthImage, borderRadius: 10, backgroundColor: "#000", alignSelf: "center", marginTop: 3}}
                source={{uri: product.image}}
 

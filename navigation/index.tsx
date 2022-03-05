@@ -25,6 +25,7 @@ import InformationScreen from "../screens/user/InformationScreen";
 import {HeaderModal} from "../screens/user/HeaderModal";
 import ChangePasswordScreen from "../screens/user/ChangePasswordScreen";
 import PostForSale from "../screens/user/PostForSaleScreen";
+import DetailProductScreen from "../screens/user/DetailProductScreen";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
   return (
@@ -54,6 +55,7 @@ function RootNavigator() {
         <Stack.Screen name="Information" component={InformationScreen}/>
         <Stack.Screen name="ChangePassword" component={ChangePasswordScreen}/>
         <Stack.Screen name="PostForSale" component={PostForSale}/>
+        <Stack.Screen name="DetailProduct" component={DetailProductScreen}/>
       </Stack.Group>
     </Stack.Navigator>
   );

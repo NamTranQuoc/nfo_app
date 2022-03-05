@@ -54,6 +54,36 @@ const products = [
     "name": "Đầm voan Nhật",
     "image": "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F4.png?alt=media",
     "price": "160.000"
+  },
+  {
+    "name": "Thắt lưng da thật",
+    "image": "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F5.png?alt=media",
+    "price": "280.000"
+  },
+  {
+    "name": "Nhẫn Calvin Klein",
+    "image": "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F6.png?alt=media",
+    "price": "99.999"
+  },
+  {
+    "name": "Túi xách pierre cardin",
+    "image": "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F7.png?alt=media",
+    "price": "390.000"
+  },
+  {
+    "name": "Nón 2Hand mùa hè",
+    "image": "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F8.png?alt=media",
+    "price": "25.499"
+  },
+  {
+    "name": "Chiếc áo phông tập luyện",
+    "image": "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F9.png?alt=media",
+    "price": "79.477"
+  },
+  {
+    "name": "Áo khoác bomber jordan",
+    "image": "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F10.png?alt=media",
+    "price": "300.000"
   }
 ]
 
@@ -88,7 +118,7 @@ export default function HomeScreen({navigation}: RootTabScreenProps<'Home'>) {
       </ScrollView>
       <View style={{display: "flex", flexDirection: "row", flexWrap: "wrap", backgroundColor: "#f2f2f2"}}>
         {products.map(item => {
-          return <ItemProduct product={item}/>
+          return <ItemProduct product={item} navigation={navigation}/>
         })}
       </View>
     </ScrollView>
