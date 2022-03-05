@@ -1,4 +1,4 @@
-import {ImageBackground, Pressable, View} from 'react-native';
+import {Pressable, View} from 'react-native';
 import {FontAwesome} from "@expo/vector-icons";
 import * as React from "react";
 import {RootStackScreenProps} from "../../types";
@@ -19,7 +19,14 @@ export const HeaderModal = ({navigation}: RootStackScreenProps<'Root'>) => {
       borderBottomRightRadius: 30
     }}>
       <Text
-        style={{width: Layout.window.width - 85, marginLeft: 43, textAlign: "center", color: '#ffffff', fontSize: 30, fontWeight: "bold"}}
+        style={{
+          width: Layout.window.width - 85,
+          marginLeft: 43,
+          textAlign: "center",
+          color: '#ffffff',
+          fontSize: 30,
+          fontWeight: "bold"
+        }}
       >NFO</Text>
       <Pressable
         onPress={() => navigation.navigate("More")}

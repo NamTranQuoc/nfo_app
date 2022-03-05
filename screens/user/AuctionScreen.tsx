@@ -1,10 +1,9 @@
-import {Text, View} from '../../components/Themed';
+import {View} from '../../components/Themed';
 import {color1} from "../../constants/Colors";
 import {RootTabScreenProps} from "../../types";
 import * as React from 'react';
 import {ScrollView} from "react-native";
 import ItemCategory from "../../components/ItemCategory";
-import Layout from "../../constants/Layout";
 import ItemProduct from "../../components/ItemProduct";
 
 const categories = [

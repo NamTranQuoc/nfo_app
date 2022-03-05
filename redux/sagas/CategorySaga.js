@@ -1,11 +1,9 @@
-import {GET_CATEGORIES, GET_CURRENT_MEMBER, SIGNUP_USER, UPDATE_MEMBER} from "../../constants/ActionTypes";
+import {GET_CATEGORIES} from "../../constants/ActionTypes";
 import {call, put, takeEvery} from "redux-saga/effects";
 import axios from "axios";
 import {HOST} from "../../constants/Common";
 import {Alert} from "react-native";
 import {onHideLoader, onShowLoader} from "../actions/CommonAction";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getCurrentMember, getCurrentMemberSuccess} from "../actions/MemberAction";
 import {getCategoriesSuccessAction} from "../actions/CategoryAction";
 
 const INSTRUCTOR_API_URL = `${HOST}/member`

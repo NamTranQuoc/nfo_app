@@ -1,7 +1,6 @@
 import {Text, View} from './Themed';
 import * as React from 'react';
 import {Avatar} from "react-native-paper";
-import {color1} from "../constants/Colors";
 
 export default function ItemCategory({category}) {
   return (

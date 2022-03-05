@@ -1,16 +1,15 @@
 import React from 'react'
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
+import {Image, StyleSheet, View} from "react-native"
 import Layout from "../constants/Layout";
-import {color1} from "../constants/Colors";
 
 export const SLIDER_WIDTH = Layout.window.width - 10
 export const ITEM_WIDTH = Layout.window.width - 10
 
-const CarouselCardItem = ({ item, index }) => {
+const CarouselCardItem = ({item, index}) => {
   return (
-      <View style={{ alignItems: "center"}} key={index}>
+      <View style={{alignItems: "center"}} key={index}>
         <Image
-            source={{ uri: item.imgUrl }}
+            source={{uri: item.imgUrl}}
             style={styles.image}
         />
       </View>

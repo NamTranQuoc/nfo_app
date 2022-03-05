@@ -94,7 +94,7 @@ export default function DetailProductScreen({navigation}: RootTabScreenProps<'De
                 borderRadius: 10,
                 marginRight: 10
               }}
-            labelStyle={{fontWeight: "bold", fontSize: 15}}>
+              labelStyle={{fontWeight: "bold", fontSize: 15}}>
               {item}
             </Button>
           })}
@@ -137,7 +137,8 @@ export default function DetailProductScreen({navigation}: RootTabScreenProps<'De
           - Giá tiền của sản phẩm sẽ phụ thuộc vào độ mới của từng đôi.
         </Text>
         <Text style={{fontSize: 17, marginTop: 0}}>
-          - Lưu ý: Các bạn trước khi đặt nên nhắn cho shop để xem ảnh chi tiết hoặc video đôi đó nhé, vì mỗi đôi giày 2hand sẽ có ngoại hình khác nhau.
+          - Lưu ý: Các bạn trước khi đặt nên nhắn cho shop để xem ảnh chi tiết hoặc video đôi đó nhé, vì mỗi đôi giày
+          2hand sẽ có ngoại hình khác nhau.
         </Text>
         <Text style={{fontSize: 17, marginTop: 0}}>
           💥 ĐẶC ĐIỂM SẢN PHẨM
@@ -158,7 +159,8 @@ export default function DetailProductScreen({navigation}: RootTabScreenProps<'De
           ✔ Để giày ở nơi khô ráo thoáng mát để giữ giày được bền đẹp hơn
         </Text>
         <Text style={{fontSize: 17, marginTop: 0}}>
-          ✔ Vệ sinh giày, dùng khăn hay bàn trải lông mềm để chải sạch giày cùng với nước tẩy rửa giày chuyên dụng với da hay da Pu
+          ✔ Vệ sinh giày, dùng khăn hay bàn trải lông mềm để chải sạch giày cùng với nước tẩy rửa giày chuyên dụng với
+          da hay da Pu
         </Text>
         <Text style={{fontSize: 17, marginTop: 0}}>
           ✔ Có thể giặt giày cùng với chất tẩy rửa nhẹ
