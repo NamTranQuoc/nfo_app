@@ -7,23 +7,24 @@ import {Image} from "react-native";
 const widthProduct = Layout.window.width / 2 - 20;
 const widthImage = widthProduct - 10;
 
-export default function ItemProduct({product, navigation}) {
+export default function ItemProductAuction({product}) {
   return (
-      <View style={{
-        marginTop: 10,
-        marginLeft: 10,
-        marginRight: 10,
-        width: widthProduct,
-        height: widthProduct + 60,
-        borderRadius: 15,
-        borderWidth: 2,
-        borderColor: color1,
-      }}
-            onTouchEnd={() => navigation.navigate("DetailProduct")}
+      <View
+          style={{
+            marginTop: 10,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderWidth: 2,
+            borderRadius: 20,
+            padding: 5,
+            borderColor: color1,
+          }}
       >
         <Image style={{
-          height: widthImage,
-          width: widthImage,
+          height: 100,
+          width: 100,
           borderRadius: 10,
           backgroundColor: "#000",
           alignSelf: "center",
@@ -32,14 +33,16 @@ export default function ItemProduct({product, navigation}) {
                source={{uri: product.image}}
 
         />
-        <Text style={{fontSize: 15, marginTop: 4, marginLeft: 5}}>{product.name}</Text>
-        <Text style={{
-          fontSize: 17,
-          marginTop: 4,
-          marginLeft: 5,
-          color: "red",
-          fontWeight: "bold"
-        }}>₫{product.price}</Text>
+        <View style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          margin: 10
+        }}>
+          <Text style={{fontSize: 20, fontWeight: "bold"}}>{product.name}</Text>
+          <Text style={{fontSize: 20, color: "red", fontWeight: "bold"}}>₫{product.price}</Text>
+          <Text style={{fontSize: 20}}>{product.time}</Text>
+        </View>
       </View>
   )
 }

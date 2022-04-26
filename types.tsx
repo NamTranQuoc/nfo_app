@@ -6,6 +6,7 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import {CompositeScreenProps, NavigatorScreenParams} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import AuctionScreen from "./screens/user/AuctionScreen";
 
 declare global {
   namespace ReactNavigation {
@@ -35,6 +36,7 @@ export type RootTabParamList = {
   TabTwo: undefined;
   Home: undefined;
   More: undefined;
+  Auction: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<BottomTabScreenProps<RootTabParamList, Screen>,

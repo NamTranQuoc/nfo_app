@@ -35,6 +35,11 @@ const linking: LinkingOptions<RootStackParamList> = {
               MoreScreen: 'more',
             },
           },
+          Auction: {
+            screens: {
+              AuctionScreen: 'auction',
+            },
+          },
         },
       },
       Login: "login",

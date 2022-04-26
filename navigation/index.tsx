@@ -26,6 +26,7 @@ import {HeaderModal} from "../screens/user/HeaderModal";
 import ChangePasswordScreen from "../screens/user/ChangePasswordScreen";
 import PostForSale from "../screens/user/PostForSaleScreen";
 import DetailProductScreen from "../screens/user/DetailProductScreen";
+import AuctionScreen from "../screens/user/AuctionScreen";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
   return (
@@ -84,6 +85,15 @@ function BottomTabNavigator() {
           tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>,
           header: Header,
         })}
+      />
+      <BottomTab.Screen
+        name="Auction"
+        component={AuctionScreen}
+        options={{
+          title: 'Auction',
+          tabBarIcon: ({color}) => <TabBarIcon name="gavel" color={color}/>,
+          header: Header
+        }}
       />
       <BottomTab.Screen
         name="More"
